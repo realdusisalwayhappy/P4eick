@@ -1,7 +1,7 @@
 const { Client, GatewayIntentBits, Collection, Events } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
-const logger = require('./utils/fuck_logger');
+const logger = require('./utlis/fuck_logger');
 require('dotenv').config();
 
 // Global Error Handlers
@@ -28,7 +28,7 @@ const client = new Client({
 client.commands = new Collection();
 
 // Load commands
-const commandsPath = path.join(__dirname, 'commands');
+const commandsPath = path.join(__dirname, 'Commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {

@@ -1,5 +1,5 @@
 // questHandler.js
-const logger = require('../utils/fuck_logger');
+const logger = require('../utlis/fuck_logger');
 const crypto = require('crypto');
 
 class QuestHandler {

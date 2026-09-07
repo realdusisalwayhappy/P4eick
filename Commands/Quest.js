@@ -84,21 +84,10 @@ module.exports = {
 
     async handleButton(interaction) {
         if (interaction.customId === 'full_auto_quest') {
-            const modal = new ModalBuilder()
-                .setCustomId('full_auto_modal')
-                .setTitle('🔥 AUTO QUEST LOGIN')
-                .addComponents(
-                    new ActionRowBuilder().addComponents(
-                        new TextInputBuilder()
-                            .setCustomId('token_input')
-                            .setLabel('DISCORD TOKENS')
-                            .setPlaceholder('1 TOKEN ต่อ 1 บรรทัด')
-                            .setStyle(TextInputStyle.Paragraph)
-                            .setRequired(true)
-                    )
-                );
-
-            return interaction.showModal(modal);
+            return interaction.reply({
+                content: '🔒 ระบบนี้ไม่รับ Discord User Token\n\nให้ตั้งค่า Bot Token ของบอทคุณใน Replit Secrets ด้วยชื่อ DISCORD_TOKEN เท่านั้น แล้วรีสตาร์ตบอท',
+                ephemeral: true
+            });
         }
 
         if (interaction.customId === 'show_ended_page') {

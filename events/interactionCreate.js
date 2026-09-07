@@ -1,5 +1,19 @@
 const { Events } = require('discord.js');
-const logger = require('../utils/fuck_logger');
+const logger = require('../utlis/fuck_logger');
+
+async function respondWithError(interaction, content) {
+    const response = { content, ephemeral: true };
+    try {
+        if (interaction.replied || interaction.deferred) {
+            await interaction.followUp(response);
+        } else {
+            await interaction.reply(response);
+        }
+    } catch (replyError) {
+        logger.error('Failed to send interaction error response');
+        logger.error(replyError);
+    }
+}
 
 module.exports = {
     name: Events.InteractionCreate,
@@ -31,9 +45,11 @@ module.exports = {
                 } catch (error) {
                     logger.error(`Error handling button ${interaction.customId}`);
                     logger.error(error);
+                    await respondWithError(interaction, '❌ เปิดหน้าต่างไม่ได้ กรุณาตรวจสอบ console log');
                 }
             } else {
                 logger.warn(`No handler found for button ${interaction.customId}`);
+                await respondWithError(interaction, '❌ ไม่พบตัวจัดการปุ่มนี้');
             }
         } else if (interaction.isModalSubmit()) {
             const commandName = interaction.message?.interaction?.commandName || 'quest';
@@ -45,6 +61,7 @@ module.exports = {
                 } catch (error) {
                     logger.error(`Error handling modal ${interaction.customId}`);
                     logger.error(error);
+                    await respondWithError(interaction, '❌ ประมวลผลฟอร์มไม่ได้ กรุณาตรวจสอบ console log');
                 }
             }
         } else if (interaction.isAutocomplete()) {

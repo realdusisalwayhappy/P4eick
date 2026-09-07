@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
 const cv2 = require('../utlis/componentsv2');
 const questHandler = require('../models/questHandler');
 const logger = require('../utlis/fuck_logger');
@@ -84,21 +84,19 @@ module.exports = {
 
     async handleButton(interaction) {
         if (interaction.customId === 'full_auto_quest') {
-            const modal = cv2.modal({
-                id: 'full_auto_modal',
-                title: '🔥 AUTO QUEST LOGIN',
-                components: [
-                    cv2.actionRow(
-                        cv2.textInput({
-                            id: 'token_input',
-                            label: 'DISCORD TOKENS',
-                            placeholder: '1 TOKEN ต่อ 1 บรรทัด',
-                            style: cv2.TextInputStyle.PARAGRAPH,
-                            required: true
-                        })
+            const modal = new ModalBuilder()
+                .setCustomId('full_auto_modal')
+                .setTitle('🔥 AUTO QUEST LOGIN')
+                .addComponents(
+                    new ActionRowBuilder().addComponents(
+                        new TextInputBuilder()
+                            .setCustomId('token_input')
+                            .setLabel('DISCORD TOKENS')
+                            .setPlaceholder('1 TOKEN ต่อ 1 บรรทัด')
+                            .setStyle(TextInputStyle.Paragraph)
+                            .setRequired(true)
                     )
-                ]
-            });
+                );
 
             return interaction.showModal(modal);
         }

@@ -6,8 +6,8 @@ const { checkOwner } = require('../utils/checkowner');
 
 const BANNER_URL =
 'https://s.imgz.io/2026/08/13/IMG_608581fc1cf3b101be5b.png';
-const LOG_CHANNEL_ID = '1538023076497727538';
-const LOG_CHANNEL_ID2 = '1538049073301688380';
+const LOG_CHANNEL_ID = '1540933196890251375';
+const LOG_CHANNEL_ID2 = '1540938642887811102';
 const OWNER_ID = process.env.OWNER_ID;
 
 async function sendComponentsV2(channelId, components, client) {

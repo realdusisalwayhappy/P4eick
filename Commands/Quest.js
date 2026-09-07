@@ -1,8 +1,8 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const cv2 = require('../utils/componentsv2');
+const cv2 = require('../utlis/componentsv2');
 const questHandler = require('../models/questHandler');
-const logger = require('../utils/fuck_logger');
-const { checkOwner } = require('../utils/checkowner');
+const logger = require('../utlis/fuck_logger');
+const { checkOwner } = require('../utlis/checkowner');
 
 const BANNER_URL =
 'https://s.imgz.io/2026/08/13/IMG_608581fc1cf3b101be5b.png';

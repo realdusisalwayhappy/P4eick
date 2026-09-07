@@ -18,6 +18,7 @@ async function respondWithError(interaction, content) {
 module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
+        logger.info(`[InteractionCreate] type=${interaction.type} name=${interaction.commandName || ''} customId=${interaction.customId || ''}`);
         if (interaction.isChatInputCommand()) {
             const command = interaction.client.commands.get(interaction.commandName);
             if (!command) {
@@ -63,6 +64,8 @@ module.exports = {
                     logger.error(error);
                     await respondWithError(interaction, '❌ ประมวลผลฟอร์มไม่ได้ กรุณาตรวจสอบ console log');
                 }
+            } else {
+                await respondWithError(interaction, '❌ ไม่พบตัวจัดการฟอร์มนี้');
             }
         } else if (interaction.isAutocomplete()) {
             const command = interaction.client.commands.get(interaction.commandName);

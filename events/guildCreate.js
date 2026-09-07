@@ -1,5 +1,5 @@
 const { Events } = require('discord.js');
-const updateStatus = require('../utils/updateStatus');
+const updateStatus = require('../utlis/updateStatus');
 
 module.exports = {
     name: Events.GuildCreate,

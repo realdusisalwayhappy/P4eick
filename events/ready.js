@@ -1,6 +1,6 @@
 const { Events } = require('discord.js');
-const logger = require('../utils/fuck_logger');
-const updateStatus = require('../utils/updateStatus');
+const logger = require('../utlis/fuck_logger');
+const updateStatus = require('../utlis/updateStatus');
 
 module.exports = {
     name: Events.ClientReady,
